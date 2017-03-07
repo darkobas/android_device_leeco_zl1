@@ -49,3 +49,5 @@
 
 # Power management
 /sys/module/lpm_levels/parameters(/.*)?                             u:object_r:sysfs_power_management:s0
+
+/system/bin/mbn_daemon                                          u:object_r:mbn_daemon_exec:s0
