@@ -2103,7 +2103,7 @@
         <ctl name="Amp DSP Enable" value="1" />
         <ctl name="Amp Volume Location" value="0" />
         -->
-        <ctl name="Speaker Volume" value="1" />
+        <ctl name="Speaker Volume" value="3" />
         <ctl name="Digital Gain" value="56" />
         <ctl name="Left Channel Enable" value="0" />
         <ctl name="Right Channel Enable" value="1" />
