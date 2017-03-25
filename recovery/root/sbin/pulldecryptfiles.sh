@@ -24,6 +24,7 @@ cp /system/vendor/lib64/libsecureui_svcsock.so /sbin/libsecureui_svcsock.so
 cp /system/vendor/lib64/libssd.so /sbin/libssd.so
 cp /system/vendor/lib64/libtime_genoff.so /sbin/libtime_genoff.so
 cp /system/vendor/lib64/libvendorconn.so /sbin/libvendorconn.so
+cp /system/vendor/lib64/libcryptfs_hw.so /sbin/libcryptfs_hw.so
 
 cp /system/lib/libkeymaster1.so /sbin/libkeymaster1.so.32
 cp /system/lib64/libkeymaster1.so /sbin/libkeymaster1.so
@@ -62,6 +63,7 @@ cp /sbin/libsecureui_svcsock.so /vendor/lib64/libsecureui_svcsock.so
 cp /sbin/libssd.so /vendor/lib64/libssd.so
 cp /sbin/libtime_genoff.so /vendor/lib64/libtime_genoff.so
 cp /sbin/libvendorconn.so /vendor/lib64/libvendorconn.so
+cp /sbin/libcryptfs_hw.so /vendor/lib64/libcryptfs_hw.so
 
 mkdir -p /system/lib
 mkdir -p /system/lib64
