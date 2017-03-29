@@ -11,3 +11,5 @@ type consumer_ir_device, dev_type;
 type smartpa_f0_detect_device, dev_type;
 
 type smartamp_device, dev_type;
+
+type eas_sched, dev_type;

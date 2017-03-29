@@ -6,3 +6,8 @@ allow audioserver rootfs:lnk_file getattr;
 allow audioserver persist_file:dir search;
 
 allow audioserver smartamp_device:chr_file rw_file_perms;
+
+allow audioserver perfd:unix_stream_socket connectto;
+allow audioserver mpctl_data_file:dir search;
+allow audioserver system_data_file:sock_file write;
+

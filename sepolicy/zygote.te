@@ -2,3 +2,5 @@ allow zygote input_device:dir r_dir_perms;
 allow zygote input_device:chr_file rw_file_perms;
 
 allow zygote self:capability { sys_nice };
+
+allow zygote eas_sched:dir { search open };

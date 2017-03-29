@@ -1,2 +1,7 @@
 allow mediadrmserver rootfs:lnk_file getattr;
 
+# communicate with perfd
+allow mediadrmserver mpctl_data_file:dir search;
+allow mediadrmserver perfd:unix_stream_socket connectto;
+allow mediadrmserver system_data_file:sock_file write;
+
