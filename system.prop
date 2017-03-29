@@ -307,11 +307,10 @@ av.debug.disable.pers.cache=true
 # ADDITIONAL_BUILD_PROPERTIES
 #
 persist.nfc.smartcard.config=SIM1,SIM2,eSE1
-ro.vendor.maxbrightness=4095
+ro.vendor.maxbrightness=255
 drm.service.enabled=true
 keyguard.no_require_sim=true
 ro.product.customize=whole-netcom
-persist.sys.le_fast_chrg_enable=1
 ro.com.android.dataroaming=false
 ro.carrier=unknown
 ro.vendor.extension_library=libqti-perfd-client.so
