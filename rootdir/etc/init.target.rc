@@ -79,7 +79,7 @@ on post-fs-data
     mkdir /data/misc/audio_pp 0771 media audio
 
 on property:init.svc.bootanim=running
-    write /sys/class/leds/wled/brightness 4095
+    write /sys/class/leds/wled/brightness 100
 
 on boot
     start rmt_storage
