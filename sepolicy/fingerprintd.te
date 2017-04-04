@@ -13,3 +13,6 @@ allow fingerprintd gx_fpd_lib_file:file r_file_perms;
 allow fingerprintd gx_fpd_lib_file:chr_file { r_file_perms setattr };
 allow fingerprintd gx_fp_lib_file:file r_file_perms;
 allow fingerprintd gx_fp_lib_file:chr_file { r_file_perms setattr };
+
+allow fingerprintd eas_sched:dir { r_dir_perms };
+allow fingerprintd eas_sched:file { rw_file_perms };

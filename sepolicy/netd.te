@@ -8,3 +8,6 @@ allow netd self:packet_socket create_socket_perms;
 
 allow netd device:file write;
 
+allow netd eas_sched:dir { r_dir_perms };
+allow netd eas_sched:file { rw_file_perms };
+

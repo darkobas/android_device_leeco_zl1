@@ -1,2 +1,5 @@
 allow logd unlabeled:dir { search };
 allow logd self:capability { dac_override };
+
+allow logd eas_sched:dir { r_dir_perms };
+allow logd eas_sched:file { rw_file_perms };

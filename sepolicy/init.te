@@ -16,4 +16,5 @@ allow init proc_dirty_ratio:file write;
 
 allow init debugfs:file { rw_file_perms };
 
-allow init eas_sched:file create;
+allow init eas_sched:dir { rw_file_perms };
+allow init eas_sched:file { create setattr rw_file_perms };
