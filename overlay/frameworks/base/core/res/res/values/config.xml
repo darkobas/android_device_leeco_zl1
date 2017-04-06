@@ -70,16 +70,16 @@
          This must be overridden in platform specific overlays -->
     <integer-array name="config_autoBrightnessLcdBacklightValues">
         <item>2</item>
-        <item>5</item>
-        <item>10</item>
-        <item>20</item>
-        <item>30</item>
-        <item>40</item>
-        <item>60</item>
-        <item>70</item>
-        <item>80</item>
-        <item>90</item>
-        <item>114</item>
+        <item>9</item>
+        <item>19</item>
+        <item>29</item>
+        <item>39</item>
+        <item>49</item>
+        <item>69</item>
+        <item>89</item>
+        <item>99</item>
+        <item>109</item>
+        <item>120</item>
         <item>130</item>
         <item>150</item>
         <item>170</item>
@@ -96,7 +96,7 @@
          brightness changes occur in response to an observed change in light level that exceeds the
          hysteresis threshold. -->
     <integer name="config_autoBrightnessBrighteningLightDebounce">2000</integer>
-    <integer name="config_autoBrightnessDarkeningLightDebounce">4000</integer>
+    <integer name="config_autoBrightnessDarkeningLightDebounce">5000</integer>
 
     <!-- Boolean indicating whether we want button brightness support -->
     <bool name="config_button_brightness_support">true</bool>
