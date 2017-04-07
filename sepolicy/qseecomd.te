@@ -6,3 +6,5 @@
 
 # qseecomd runs under the tee context
 allow tee persist_file:file r_file_perms;
+
+r_dir_file(tee, persist_drm_file);

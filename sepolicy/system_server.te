@@ -25,3 +25,5 @@ allow system_server mpctl_data_file:dir search;
 allow system_server mpctl_data_file:sock_file write;
 allow system_server system_data_file:sock_file write;
 allow system_server perfd:unix_stream_socket connectto;
+
+allow system_server media_rw_data_file:dir getattr;
