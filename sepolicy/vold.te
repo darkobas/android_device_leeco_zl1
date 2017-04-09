@@ -7,3 +7,4 @@ allow vold persist_file:dir { getattr read open ioctl };
 
 allow vold proc_irq:dir  { getattr read open ioctl };
 
+allow vold logd:dir { r_dir_perms };
