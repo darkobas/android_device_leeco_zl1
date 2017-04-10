@@ -30,10 +30,6 @@
 #define ULP_PROXY_BASE_H
 
 #include <gps_extended.h>
-
-struct FlpExtLocation_s;
-struct FlpExtBatchOptions;
-
 namespace loc_core {
 
 class LocAdapterBase;
@@ -96,19 +92,6 @@ public:
     inline virtual void setCapabilities(unsigned long capabilities) {
 
         (void)capabilities;
-    }
-    inline virtual bool reportBatchingSession(FlpExtBatchOptions &options,
-                                              bool active) {
-
-        (void)options;
-        (void)active;
-        return false;
-    }
-    inline virtual bool reportPositions(const struct FlpExtLocation_s* locations,
-                                        int32_t number_of_locations) {
-        (void)locations;
-        (void)number_of_locations;
-        return false;
     }
     inline virtual bool reportDeleteAidingData(GpsAidingData aidingData)
     {
