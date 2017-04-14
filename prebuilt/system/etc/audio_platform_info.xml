@@ -77,7 +77,7 @@
         <device name="SND_DEVICE_IN_SPEAKER_DMIC_AEC_NS" acdb_id="43"/>
         <device name="SND_DEVICE_IN_HEADSET_MIC" acdb_id="115"/>
         <device name="SND_DEVICE_IN_HEADSET_MIC_FLUENCE" acdb_id="117"/>
-        <device name="SND_DEVICE_IN_VOICE_SPEAKER_MIC" acdb_id="8"/>
+        <device name="SND_DEVICE_IN_VOICE_SPEAKER_MIC" acdb_id="114"/>
         <device name="SND_DEVICE_IN_VOICE_HEADSET_MIC" acdb_id="47"/>
         <device name="SND_DEVICE_IN_HDMI_MIC" acdb_id="8"/>
         <device name="SND_DEVICE_IN_BT_SCO_MIC_WB" acdb_id="4"/>
@@ -106,6 +106,10 @@
         <device name="SND_DEVICE_IN_SPEAKER_QMIC_AEC" acdb_id="121"/>
         <device name="SND_DEVICE_IN_SPEAKER_QMIC_NS" acdb_id="120"/>
         <device name="SND_DEVICE_IN_SPEAKER_QMIC_AEC_NS" acdb_id="105"/>
+
+        <device name="SND_DEVICE_IN_VOICE_REC_QMIC_FLUENCE" acdb_id="8"/>
+        <device name="SND_DEVICE_IN_UNPROCESSED_STEREO_MIC" acdb_id="8"/>
+        <device name="SND_DEVICE_IN_UNPROCESSED_QUAD_MIC" acdb_id="8"/>
     </acdb_ids>
     <bit_width_configs>
         <device name="SND_DEVICE_OUT_SPEAKER" bit_width="24"/>
@@ -125,8 +129,6 @@
     </backend_names>
 
     <device_names>
-        <!-- Input devices -->
-        <device name="SND_DEVICE_IN_VOICE_SPEAKER_MIC" alias="voice-speaker-dmic-ef-fluence" />
     </device_names>
 
     <config_params>
