@@ -129,6 +129,8 @@
     </backend_names>
 
     <device_names>
+        <!-- Input devices -->
+        <device name="SND_DEVICE_IN_VOICE_SPEAKER_MIC" alias="voice-speaker-dmic-ef-fluence" />
     </device_names>
 
     <config_params>
