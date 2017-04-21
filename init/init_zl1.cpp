@@ -148,9 +148,9 @@ void vendor_load_properties()
            property_set("ro.telephony.default_network", "22,22");
            property_set("ro.product.model", "LEX720");
            property_set("ro.product.name", "ZL1_CN");
-           property_set("persist.radio.cs_srv_type", "1");
-           property_set("persist.radio.jbims", "0");
-           property_set("persist.radio.calls.on.ims", "0");
+           property_set("persist.radio.cs_srv_type", "0");
+           property_set("persist.radio.jbims", "true");
+           property_set("persist.radio.calls.on.ims", "true");
            property_set("persist.data.iwlan.enable", "false");
            property_set("ro.com.google.clientidbase", "android-letv");
            property_set("ro.build.fingerprint", "LeEco/ZL1_CN/le_zl1:6.0.1/WAXCNFN5801811012S/letv11011204:user/release-keys");
@@ -160,7 +160,7 @@ void vendor_load_properties()
            property_set("persist.radio.multisim.config", "NA");
            property_set("persist.sys.timezone", "America/Los_Angeles");
            property_set("persist.data.iwlan.enable", "true");
-	   property_set("persist.radio.calls.on.ims", "true");
+           property_set("persist.radio.calls.on.ims", "true");
            property_set("persist.radio.jbims", "true");
            property_set("persist.radio.cs_srv_type", "0");
            property_set("ro.mtk_default_ime", "com.android.inputmethod.latin.LatinIME");
