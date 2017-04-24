@@ -68,7 +68,8 @@ on early-boot
     # set RLIMIT_MEMLOCK to 64MB
     setrlimit 8 67108864 67108864
     # set aggressive read ahead during boot up.
-    write /sys/block/dm-0/queue/read_ahead_kb 2048
+    write /sys/block/sda/queue/read_ahead_kb 2048
+    write /sys/block/sde/queue/read_ahead_kb 2048
     # Allow subsystem (modem etc) debugging
     write /sys/module/subsystem_restart/parameters/enable_debug ${persist.sys.ssr.enable_debug}
     write /sys/module/pil_msa/parameters/pbl_mba_boot_timeout_ms ${persist.sys.mba_boot_timeout}
@@ -597,82 +598,8 @@ on property:init.svc.per_mgr=running
 
 on property:sys.shutdown.requested=*
     stop per_proxy
+    stop cnss-daemon
 
-#on property:persist.sys.pd_enable=1
-#    start pd_mapper
-#    write /sys/class/service_locator/service_locator_status 1
-
-#on property:persist.sys.pd_enable=0
-#    write /sys/class/service_locator/service_locator_status 0
-
-#on property:sys.ims.QMI_DAEMON_STATUS=1
-#    start imsdatadaemon
-
-#service ims_rtp_daemon /system/bin/ims_rtp_daemon
-#    class main
-#    user system
-#    socket ims_rtpd stream 0660 system radio
-#    group radio diag inet log
-#    disabled
-
-#service imscmservice /system/bin/imscmservice
-#    class main
-#    user system
-#    group radio diag log
-#    writepid /dev/cpuset/system-background/tasks
-#    disabled
-
-#on property:sys.ims.DATA_DAEMON_STATUS=1
-#    start ims_rtp_daemon
-#    start imscmservice
-
-#service ppd /system/vendor/bin/mm-pp-dpps
-#    class late_start
-#    user system
-#    group system graphics
-#    socket pps stream 0660 system system
-#    disabled
-#
-#on property:init.svc.surfaceflinger=stopped
-#    stop ppd
-
-#on property:init.svc.surfaceflinger=running
-#    start ppd
-
-#on property:init.svc.surfaceflinger=restarting
-#    stop ppd
-
-#on property:init.svc.zygote=stopped
-#    stop ppd
-
-#on property:init.svc.zygote=running
-#    start ppd
-
-#on property:init.svc.zygote=restarting
-#    stop ppd
-#    start imsdatadaemon
-
-#service tlocd /system/bin/tloc_daemon
-#    class late_start
-#    user system
-#    group drmrpc gps
-#
-#service tlocd /system/bin/tloc_daemon
-#    class late_start
-#    user system
-#    group drmrpc gps
-
-#service energy-awareness /system/bin/energy-awareness
-#    class main
-#    user root
-#    group system
-#    oneshot
-#
-#service mdtpd /system/vendor/bin/mdtpd
-#    class late_start
-#    user root
-#    group system radio drmrpc
-#
 service qcomsysd /system/bin/qcom-system-daemon
     class main
     user root
@@ -707,10 +634,9 @@ service charger /sbin/healthd -c
 
 on property:sys.boot_completed=1
     write /dev/kmsg "Boot completed "
-    # Reset the read_ahead_kb to 256
-    write /sys/block/dm-0/queue/read_ahead_kb 256
-    write /sys/block/sda/queue/read_ahead_kb 256
-    write /sys/block/sde/queue/read_ahead_kb 256
+    # Reset the read_ahead_kb to 512
+    write /sys/block/sda/queue/read_ahead_kb 512
+    write /sys/block/sde/queue/read_ahead_kb 512
 
     # CPE fw_name used by sound trigger HAL
     chown media audio /sys/kernel/wcd_cpe0/fw_name
@@ -754,6 +680,8 @@ on property:bluetooth.startbtsnoop=false
 on property:vold.decrypt=trigger_restart_framework
     start config_bt_addr
     start config_bluetooth
+    start wcnss-service
+    start cnss_diag
 
 on property:persist.env.fastdorm.enabled=true
     setprop persist.radio.data_no_toggle 1
@@ -761,7 +689,6 @@ on property:persist.env.fastdorm.enabled=true
 service cnd /system/bin/cnd
     class main
     socket cnd stream 660 root inet
-    group root wakelock
     writepid /dev/cpuset/system-background/tasks
 
 service dpmd /system/bin/dpmd
@@ -778,7 +705,6 @@ service irsc_util /system/bin/irsc_util "/etc/sec_config"
 service rmt_storage /system/bin/rmt_storage
     class core
     user root
-    group system wakelock
     writepid /dev/cpuset/system-background/tasks
 
 service rfs_access /system/bin/rfs_access
@@ -788,9 +714,8 @@ service rfs_access /system/bin/rfs_access
     writepid /dev/cpuset/system-background/tasks
 
 service tftp_server /system/bin/tftp_server
-    class main
+    class core
     user root
-    group system wakelock
     writepid /dev/cpuset/system-background/tasks
 
 on property:wc_transport.start_hci=true
@@ -811,18 +736,6 @@ service config_bt_addr /system/bin/btnvtool -O
     group bluetooth radio
     oneshot
 
-on property:wc_transport.start_root=true
-    start hci_filter_root
-
-on property:wc_transport.start_root=false
-    stop hci_filter_root
-
-service hci_filter_root /system/bin/wcnss_filter
-    class late_start
-    user bluetooth
-    group bluetooth qcom_diag system
-    disabled
-
 service config_bt_addr /system/bin/btnvtool -O
     class core
     user bluetooth
@@ -832,6 +745,7 @@ service config_bt_addr /system/bin/btnvtool -O
 service config_bluetooth /system/bin/sh /system/etc/init.qcom.bt.sh "onboot"
     class core
     user root
+    seclabel u:r:bluetooth_loader:s0
     oneshot
 
 service hciattach /system/bin/sh /system/etc/init.qcom.bt.sh
@@ -839,6 +753,7 @@ service hciattach /system/bin/sh /system/etc/init.qcom.bt.sh
     user bluetooth
     group bluetooth net_bt_admin
     disabled
+    seclabel u:r:bluetooth_loader:s0
     oneshot
 
 on property:bluetooth.hciattach=true
@@ -1017,28 +932,6 @@ on property:netd.fstman.start=true
 on property:netd.fstman.start=false
     stop fstman
 
-#service ptt_socket_app /system/bin/ptt_socket_app -d
-#    class main
-#    user root
-#    group root
-#    oneshot
-#
-#service ptt_ffbm /system/bin/ptt_socket_app -f -d
-#    user root
-#    group root
-#    disabled
-#    oneshot
-#
-#service wifi_fccutild /system/bin/wifi_fccutild
-#    user system
-#    group system inet net_admin
-#    socket wififccutild_server dgram 0660 system system
-#    disabled
-#    oneshot
-#
-#on property:wifi.fccutild.load.qcacld=true
-#    insmod /system/lib/modules/qca_cld/qca_cld_wlan.ko con_mode=5
-
 service cnss_diag /system/bin/cnss_diag -q
     class late_start
     user system
@@ -1047,6 +940,8 @@ service cnss_diag /system/bin/cnss_diag -q
 
 service cnss-daemon /system/bin/cnss-daemon -n -l
     class late_start
+    user system
+    group system inet net_admin wifi
 
 service loc_launcher /system/bin/loc_launcher
     #loc_launcher will start as root and set its uid to gps
@@ -1060,22 +955,6 @@ service fm_dl /system/bin/sh /system/etc/init.qcom.fm.sh
     group system
     disabled
     oneshot
-
-#on property:crypto.driver.load=1
-#     insmod /system/lib/modules/qce.ko
-#     insmod /system/lib/modules/qcedev.ko
-
-#service drmdiag /system/bin/drmdiagapp
-#    class late_start
-#     user root
-#     disabled
-#     oneshot
-#
-#on property:drmdiag.load=1
-#    start drmdiag
-#
-#on property:drmdiag.load=0
-#    stop drmdiag
 
 service qcom-sh /system/bin/sh /init.qcom.sh
     class late_start
