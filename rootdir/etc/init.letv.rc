@@ -5,25 +5,12 @@ on boot
     chmod 0666 /sys/class/leds/torch-light0/brightness
     chmod 0666 /sys/class/leds/torch-light1/brightness
 
-    # sleep_sign used by DebugUtils APP
-    chown system system /sys/class/leds/blue/sleep_sign
-    chmod 0666 /sys/class/leds/blue/sleep_sign
-
     chown system system /dev/goodix_fp
     chmod 0644 /dev/goodix_fp
     chmod 0644 /dev/smartpa_f0_detect
 
     chown system system /sys/class/power_supply/battery/system_scn
     chmod 0660 /sys/class/power_supply/battery/system_scn
-
-    #change for fade in/out
-    chown media media /dev/dsm_ctrl_dev
-    chown media media /system/bin/dsm_ctrl
-    chown media media /system/bin/dsm_fade
-    chown media media /sys/module/snd_soc_max98927/parameters/fade_in_out
-    chmod 0600 /dev/dsm_ctrl_dev
-    chmod 0700 /system/bin/dsm_ctrl
-    chmod 0700 /system/bin/dsm_fade
 
 service gx_fpd /system/bin/gx_fpd
     class late_start
@@ -34,40 +21,11 @@ service gx_fpd /system/bin/gx_fpd
 on property:init.svc.qmuxd=running
     start wifi_mac
 
-service letv_diag /system/bin/letv_diag
-    class main
-    user root
-    group root
-
 #service wifi_mac /system/bin/logwrapper /system/bin/set_wifi_mac
 service wifi_mac /system/bin/set_wifi_mac
     class core
     user root
     oneshot
-    disabled
-
-echo " br start "
-service backuprestore /system/bin/br_app_data_service
-    class main
-    socket backuprestore stream 0660 root sdcard_rw
-    user root
-
-on property:sys.factory.zeusis.wifi.test=running
-    insmod /system/lib/modules/qca_cld/qca_cld_wlan.ko con_mode=5
-
-
-on property:sys.boot_completed=1 && property:persist.sys.tcpdump=1 && property:persist.sys.zeusis.beta=1
-    mkdir /sdcard/tcpdump 0771 root sdcard_rw
-    start tcpdumpd
-
-on property:persist.sys.tcpdump=0
-    stop tcpdumpd
-
-on property:persist.sys.zeusis.beta=0
-    stop tcpdumpd
-
-service tcpdumpd /system/xbin/tcpdump -i any -s 0 -C 20 -W 10 -w sdcard/tcpdump/tcpdump.cap
-    class main
     disabled
 
 #  sys.sysctl.led.brightness

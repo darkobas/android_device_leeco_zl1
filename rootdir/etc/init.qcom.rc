@@ -878,24 +878,6 @@ service btwlancoex /system/bin/sh /system/etc/init.qcom.coex.sh
     disabled
     oneshot
 
-#service amp_init /system/bin/amploader -i
-#    class late_start
-#    user root
-#    disabled
-#    oneshot
-
-#service amp_load /system/bin/amploader -l 7000
-#    class late_start
-#    user root
-#    disabled
-#    oneshot
-
-#service amp_unload /system/bin/amploader -u
-#    class late_start
-#    user root
-#    disabled
-#    oneshot
-
 service p2p_supplicant /system/bin/wpa_supplicant \
     -ip2p0 -Dnl80211 -c/data/misc/wifi/p2p_supplicant.conf \
     -I/system/etc/wifi/p2p_supplicant_overlay.conf -N \
@@ -986,23 +968,6 @@ service hostapd /system/bin/hostapd /data/hostapd/hostapd.conf
     oneshot
     disabled
 
-#service ds_fmc_appd /system/bin/ds_fmc_appd -p "rmnet0" -D
-#    class late_start
-#    group radio wifi inet
-#    disabled
-#    oneshot
-#
-#on property:persist.data.ds_fmc_app.mode=1
-#    start ds_fmc_appd
-
-#service ims_regmanager /system/bin/exe-ims-regmanagerprocessnative
-#    class late_start
-#    group net_bt_admin inet radio wifi
-#    disabled
-
-#on property:persist.ims.regmanager.mode=1
-#    start ims_regmanager
-
 on property:ro.data.large_tcp_window_size=true
     # Adjust socket buffer to enlarge TCP receive window for high bandwidth (e.g. DO-RevB)
     write /proc/sys/net/ipv4/tcp_adv_win_scale  2
@@ -1053,12 +1018,6 @@ on property:sys.usb_uicc.enabled=1
 on property:sys.usb_uicc.enabled=0
     start usb_uicc_enable
 
-#service profiler_daemon /system/bin/profiler_daemon
-#    class late_start
-#    user root
-#    group root
-#    disabled
-
 service hcidump /system/bin/sh /system/etc/hcidump.sh
     user bluetooth
     group bluetooth system net_bt_admin net_admin
@@ -1076,32 +1035,6 @@ service ssr_diag /system/bin/ssr_diag
     user system
     group system
     disabled
-
-#service hvdcp /system/bin/hvdcp
-#    class core
-#    user root
-#    disabled
-
-#on property:persist.usb.hvdcp.detect=true
-#    start hvdcp
-
-#on property:persist.usb.hvdcp.detect=false
-#    stop hvdcp
-
-#service charger_monitor /system/bin/charger_monitor
-#    user root
-#    group root
-#    disabled
-
-#service qbcharger /charger -m 1
-#    disabled
-#    oneshot
-#
-#on property:sys.qbcharger.enable=true
-#    start qbcharger
-#
-#on property:sys.qbcharger.enable=false
-#    stop qbcharger
 
 service diag_mdlog_start /system/bin/diag_mdlog
     class late_start
@@ -1203,13 +1136,6 @@ service mbn-daemon /system/bin/mbn_daemon -U
     user root
     group radio cache inet misc audio log qcom_diag
     oneshot
-
-on property:persist.sys.le_fast_chrg_enable=1
-    write /sys/class/power_supply/le_ab/le_quick_charge_mode 0
-
-on property:persist.sys.le_fast_chrg_enable=0
-    write /sys/class/power_supply/le_ab/le_quick_charge_mode 1
-# add by letv for reduced power rate when normal charge be selected end
 
 service time_daemon /system/bin/time_daemon
    class main
