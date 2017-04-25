@@ -1202,8 +1202,9 @@ on property:persist.sys.le_fast_chrg_enable=1
 on property:persist.sys.le_fast_chrg_enable=0
     write /sys/class/power_supply/le_ab/le_quick_charge_mode 1
 # add by letv for reduced power rate when normal charge be selected end
-on property:vold.decrypt=trigger_restart_min_framework
-    start time_daemon
 
-on property:vold.decrypt=trigger_restart_framework
-    restart time_daemon
+service time_daemon /system/bin/time_daemon
+   class main
+   user root
+   group root
+

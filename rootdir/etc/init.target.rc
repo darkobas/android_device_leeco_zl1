@@ -186,13 +186,6 @@ service thermal-engine /system/vendor/bin/thermal-engine
    socket thermal-recv-client stream 0660 system system
    socket thermal-recv-passive-client stream 0666 system system
 
-service time_daemon /system/bin/time_daemon
-   class late_start
-   user root
-   group root
-   writepid /dev/cpuset/system-background/tasks
-
-
 on property:init.svc.bootanim=stopped
     start usf-post-boot
 
