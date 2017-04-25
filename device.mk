@@ -88,7 +88,6 @@ PRODUCT_PACKAGES += \
     init.qcom.rc \
     init.letv.rc \
     init.qcom.sh \
-    init.power.sh \
     init.qcom.usb.rc \
     init.qcom.usb.sh \
     init.qcom.sensors.sh \
