@@ -135,7 +135,7 @@ static int process_boost(int boost_handle, int duration)
 {
     char governor[80];
     int eas_launch_resources[] = {0x40804000, 0xFFF, 0x40804100, 0xFFF,
-                                         0x40800000, 0xFFF, 0x40800100, 0xFFF,
+                                         0x40800000, 1000, 0x40800100, 1000,
                                          0x41800000, 140,   0x40400000, 0x1};
     int hmp_launch_resources[] = {0x40C00000, 0x1,   0x40804000, 0xFFF,
                                          0x40804100, 0xFFF, 0x40800000, 0xFFF,
