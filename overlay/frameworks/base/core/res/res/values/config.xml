@@ -442,6 +442,9 @@
         <item>"/system/framework/arm64/boot-core-libart.oat"</item>
    </string-array>
 
+    <!-- Should the pinner service pin the Camera application? -->
+    <bool name="config_pinnerCameraApp">true</bool>
+
     <!-- Shutdown if the battery temperature exceeds (this value * 0.1) Celsius. -->
     <integer name="config_shutdownBatteryTemperature">680</integer>
 </resources>
