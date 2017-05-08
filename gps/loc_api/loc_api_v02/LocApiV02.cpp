@@ -919,8 +919,11 @@ enum loc_api_adapter_err LocApiV02 ::  deleteAidingData(GpsAidingData f)
       }
   }
 
-  if (eLOC_CLIENT_FAILURE_UNSUPPORTED == status) {
+  if (eLOC_CLIENT_FAILURE_UNSUPPORTED == status ||
+      eLOC_CLIENT_FAILURE_INTERNAL == status) {
       // If the new API is not supported we fall back on the old one
+      // The error could be eLOC_CLIENT_FAILURE_INTERNAL if
+      // QMI_LOC_DELETE_GNSS_SERVICE_DATA_REQ_V02 is not in the .idl file
       LOC_LOGD("%s:%d]: QMI_LOC_DELETE_GNSS_SERVICE_DATA_REQ_V02 not supported"
           "We use QMI_LOC_DELETE_ASSIST_DATA_REQ_V02\n",
           __func__, __LINE__);
@@ -1282,9 +1285,9 @@ enum loc_api_adapter_err LocApiV02 :: setXtraData(
   char* data, int length)
 {
   locClientStatusEnumType status = eLOC_CLIENT_SUCCESS;
-  int     total_parts;
-  uint8_t   part;
-  uint16_t  len_injected;
+  uint16_t  total_parts;
+  uint16_t  part;
+  uint32_t  len_injected;
 
   locClientReqUnionType req_union;
   qmiLocInjectPredictedOrbitsDataReqMsgT_v02 inject_xtra;
@@ -2273,6 +2276,7 @@ void LocApiV02 :: reportPosition (
                     break;
                }
             }
+
             if (location_report_ptr->horUncEllipseSemiMajor_valid)
             {
                 locationExtended.flags |= GPS_LOCATION_EXTENDED_HAS_HOR_ELIP_UNC_MAJOR;
@@ -2287,6 +2291,41 @@ void LocApiV02 :: reportPosition (
             {
                 locationExtended.flags |= GPS_LOCATION_EXTENDED_HAS_HOR_ELIP_UNC_AZIMUTH;
                 locationExtended.horUncEllipseOrientAzimuth = location_report_ptr->horUncEllipseOrientAzimuth;
+            }
+
+            if (location_report_ptr->gnssSvUsedList_valid &&
+                      (location_report_ptr->gnssSvUsedList_len != 0))
+            {
+                int idx=0;
+                uint32_t gnssSvUsedList_len = location_report_ptr->gnssSvUsedList_len;
+                uint16_t gnssSvIdUsed = 0;
+
+                locationExtended.flags |= GPS_LOCATION_EXTENDED_HAS_GNSS_SV_USED_DATA;
+                // Set of used_in_fix SV ID
+                for (idx = 0; idx < gnssSvUsedList_len; idx++)
+                {
+                    gnssSvIdUsed = location_report_ptr->gnssSvUsedList[idx];
+                    if (gnssSvIdUsed <= GPS_SV_PRN_MAX)
+                    {
+                        locationExtended.gnss_sv_used_ids.gps_sv_used_ids_mask |=
+                                                    (1 << (gnssSvIdUsed - GPS_SV_PRN_MIN));
+                    }
+                    else if ((gnssSvIdUsed >= GLO_SV_PRN_MIN) && (gnssSvIdUsed <= GLO_SV_PRN_MAX))
+                    {
+                        locationExtended.gnss_sv_used_ids.glo_sv_used_ids_mask |=
+                                                    (1 << (gnssSvIdUsed - GLO_SV_PRN_MIN));
+                    }
+                    else if ((gnssSvIdUsed >= BDS_SV_PRN_MIN) && (gnssSvIdUsed <= BDS_SV_PRN_MAX))
+                    {
+                        locationExtended.gnss_sv_used_ids.bds_sv_used_ids_mask |=
+                                                    (1 << (gnssSvIdUsed - BDS_SV_PRN_MIN));
+                    }
+                    else if ((gnssSvIdUsed >= GAL_SV_PRN_MIN) && (gnssSvIdUsed <= GAL_SV_PRN_MAX))
+                    {
+                        locationExtended.gnss_sv_used_ids.gal_sv_used_ids_mask |=
+                                                    (1 << (gnssSvIdUsed - GAL_SV_PRN_MIN));
+                    }
+                }
             }
 
             if((0 == location_report_ptr->latitude) &&
@@ -2306,15 +2345,15 @@ void LocApiV02 :: reportPosition (
             }
             else
             {
-            LocApiBase::reportPosition( location,
-                            locationExtended,
-                            (void*)location_report_ptr,
-                            (location_report_ptr->sessionStatus
-                             == eQMI_LOC_SESS_STATUS_IN_PROGRESS_V02 ?
-                             LOC_SESS_INTERMEDIATE : LOC_SESS_SUCCESS),
-                            tech_Mask);
+                LocApiBase::reportPosition( location,
+                                locationExtended,
+                                (void*)location_report_ptr,
+                                (location_report_ptr->sessionStatus
+                                 == eQMI_LOC_SESS_STATUS_IN_PROGRESS_V02 ?
+                                 LOC_SESS_INTERMEDIATE : LOC_SESS_SUCCESS),
+                                tech_Mask);
+            }
         }
-    }
     }
     else
     {
