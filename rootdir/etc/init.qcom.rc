@@ -334,6 +334,10 @@ on boot
     chown root system /proc/touchpanel/capacitive_keys_enable
     chmod 0660 /proc/touchpanel/capacitive_keys_enable
 
+    #quickset IR
+    chown system system /sys/remote/enable
+    chmod 0666 /sys/remote/enable
+
 on post-fs
 
     # Link formware to /vendor/firmware

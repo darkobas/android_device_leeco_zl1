@@ -20,3 +20,4 @@ type proc_kernel_sched, fs_type;
 type sysfs_power_management, sysfs_type, fs_type;
 
 type debugfs_modem, fs_type, debugfs_type;
+type sysfs_ir_enable, fs_type, sysfs_type;

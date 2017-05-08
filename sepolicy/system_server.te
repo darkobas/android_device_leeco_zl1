@@ -9,9 +9,6 @@ allow system_server sysfs_vibrator:dir search;
 allow system_server sysfs_graphics:file rw_file_perms;
 allow system_server sysfs_graphics:dir search;
 
-#Allow access to lirc device
-allow system_server lirc_device:chr_file rw_file_perms;
-
 get_prop(system_server, diag_prop);
 
 # Persistent properties
@@ -31,4 +28,6 @@ allow system_server media_rw_data_file:dir { r_dir_perms };
 allow system_server kernel:system syslog_read;
 
 allow system_server diag_device:chr_file { rw_file_perms };
+
+allow system_server consumer_ir_device:chr_file { rw_file_perms };
 

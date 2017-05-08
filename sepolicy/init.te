@@ -20,3 +20,6 @@ allow init eas_sched:dir { rw_file_perms };
 allow init eas_sched:file { create setattr rw_file_perms };
 
 allow init eas_sched:dir mounton;
+
+allow init consumer_ir_device:file relabelto;
+
