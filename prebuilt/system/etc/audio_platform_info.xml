@@ -133,8 +133,8 @@
     </backend_names>
 
     <device_names>
-        <device name="SND_DEVICE_IN_HEADSET_MIC" alias="voice-headset-mic" />  
-        <device name="SND_DEVICE_IN_VOICE_SPEAKER_MIC" alias="voice-dmic-ef" />
+        <device name="SND_DEVICE_IN_HEADSET_MIC" alias="voice-headset-mic" />
+        <device name="SND_DEVICE_IN_VOICE_SPEAKER_MIC" alias="voice-speaker-dmic-ef-liquid" />
         <device name="SND_DEVICE_OUT_VOICE_SPEAKER" alias="voice-speaker-stereo-brightness" />
     </device_names>
 
