@@ -338,3 +338,6 @@ persist.camera.llnoise=1
 
 # ATFWD
 persist.radio.atfwd.start=false
+
+#disable swap for dexpreopt
+dalvik.vm.dex2oat-swap=false
