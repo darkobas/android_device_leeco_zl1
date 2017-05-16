@@ -2,3 +2,6 @@ allow location permission_service:service_manager find;
 
 allow location eas_sched:dir { r_dir_perms };
 allow location eas_sched:file { rw_file_perms };
+
+allow location diag_device:chr_file { rw_file_perms };
+

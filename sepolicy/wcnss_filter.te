@@ -2,3 +2,5 @@ get_prop(wcnss_filter, diag_prop);
 
 allow wcnss_filter rootfs:lnk_file getattr;
 
+allow wcnss_filter diag_device:chr_file { rw_file_perms };
+

@@ -5,3 +5,5 @@ allow surfaceflinger system_data_file:sock_file write;
 allow surfaceflinger eas_sched:dir { r_dir_perms };
 allow surfaceflinger eas_sched:file { rw_file_perms };
 
+allow surfaceflinger diag_device:chr_file { rw_file_perms };
+

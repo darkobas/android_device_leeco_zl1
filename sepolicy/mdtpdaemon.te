@@ -1,2 +1,5 @@
 allow mdtpdaemon eas_sched:dir { r_dir_perms };
 allow mdtpdaemon eas_sched:file { rw_file_perms };
+
+allow mdtpdaemon diag_device:chr_file { rw_file_perms };
+

@@ -1,1 +1,4 @@
 set_prop(qti, diag_prop)
+
+allow qti diag_device:chr_file { rw_file_perms };
+

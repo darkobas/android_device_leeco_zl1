@@ -15,3 +15,6 @@ allow qti_init_shell device:file { create open write };
 
 allow qti_init_shell proc_touchpanel:dir { rw_dir_perms setattr };
 allow qti_init_shell proc_touchpanel:file { getattr setattr };
+
+allow qti_init_shell coresight_prop:property_service set;
+

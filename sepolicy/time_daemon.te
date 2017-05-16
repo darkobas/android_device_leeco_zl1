@@ -1,2 +1,5 @@
 allow time_daemon property_socket:sock_file write;
 get_prop(time_daemon, diag_prop);
+
+allow time_daemon diag_device:chr_file { rw_file_perms };
+

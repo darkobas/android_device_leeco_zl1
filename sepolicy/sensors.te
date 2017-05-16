@@ -4,3 +4,5 @@ allow sensors devpts:chr_file { read write };
 allow sensors persist_file:dir { add_name create setattr write };
 allow sensors persist_file:file { append create open read getattr write };
 
+allow sensors diag_device:chr_file { rw_file_perms };
+

@@ -13,3 +13,5 @@ allow audioserver system_data_file:sock_file write;
 
 allow audioserver eas_sched:dir { r_dir_perms };
 allow audioserver eas_sched:file { rw_file_perms };
+
+allow audioserver diag_device:chr_file { rw_file_perms };

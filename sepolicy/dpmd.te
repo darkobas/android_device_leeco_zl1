@@ -1,1 +1,4 @@
 get_prop(dpmd, diag_prop);
+
+allow dpmd diag_device:chr_file { rw_file_perms };
+

@@ -4,3 +4,5 @@ get_prop(cnd, diag_prop);
 
 allow cnd socket_device:sock_file { setattr unlink };
 
+allow cnd diag_device:chr_file { rw_file_perms };
+
