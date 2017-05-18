@@ -341,3 +341,15 @@ persist.radio.atfwd.start=false
 
 #disable swap for dexpreopt
 dalvik.vm.dex2oat-swap=false
+
+#volte
+persist.radio.cs_srv_type=0
+persist.radio.jbims=true
+persist.radio.calls.on.ims=true
+persist.data.iwlan.enable=true
+persist.rcs.supported=1
+persist.radio.domain.ps=false
+persist.radio.VT_HYBRID_ENABLE=1
+persist.radio.VT_ENABLE=1
+persist.radio.REVERSE_QMI=0
+persist.radio.ROTATION_ENABLE=1
