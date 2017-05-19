@@ -641,6 +641,7 @@ service charger /sbin/healthd -c
     writepid /dev/cpuset/system-background/tasks
 
 on property:sys.boot_completed=1
+    start qcom-post-boot
     write /dev/kmsg "Boot completed "
     # Reset the read_ahead_kb to 512
     write /sys/block/sda/queue/read_ahead_kb 512
@@ -1140,4 +1141,10 @@ service time_daemon /system/bin/time_daemon
    class main
    user root
    group root
+
+service qcom-post-boot /system/bin/sh /system/etc/init.qcom.post_boot.sh
+    class late_start
+    user root
+    disabled
+    oneshot
 
