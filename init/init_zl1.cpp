@@ -146,10 +146,13 @@ void vendor_load_properties()
            property_set("persist.radio.multisim.config", "dsds");
            property_set("ro.telephony.default_network", "22,22");
            property_set("ro.product.model", "LEX720");
-           property_set("ro.product.name", "ZL1_CN");
+           property_set("ro.product.name", "ZL1_NA");
            property_set("ro.product.device", "le_zl1");
-           property_set("ro.build.fingerprint", "LeEco/ZL1_CN/le_zl1:6.0.1/WAXCNFN5902303282S/letv03281232:user/release-keys");
-           property_set("ro.build.description", "le_zl1-user 6.0.1 WAXCNFN5902303282S eng.letv.20170328.122958 release-keys");
+           property_set("ro.build.id", "WEXNAOP5802012101S");
+           property_set("ro.product.customize", "oversea");
+           property_set("ro.letv.release.branch", "ZL1_NA_STABLE_020_20161104_20161210_012143_LE_ZL1_OVERSEA.xml");
+           property_set("ro.build.description", "le_zl1-user 6.0.1 WEXNAOP5802012101S eng.letv.20161210.014420 release-keys");
+           property_set("ro.build.fingerprint", "LeEco/ZL1_NA/le_zl1:6.0.1/WEXNAOP5802012101S/letv12100148:user/release-keys");
         } else {
            property_set("persist.multisim.config", "NA");
            property_set("persist.radio.multisim.config", "NA");
@@ -159,10 +162,13 @@ void vendor_load_properties()
            property_set("ro.product.model", "LEX727");
            property_set("ro.product.name", "ZL1_NA");
            property_set("ro.product.device", "le_zl1");
-           property_set("ro.product.customize", "oversea");
            property_set("ro.com.google.clientidbase", "android-letv");
-           property_set("ro.build.fingerprint", "LeEco/ZL1_NA/le_zl1:6.0.1/WEXNAOP5802101261S/letv01261206:user/release-keys");
-           property_set("ro.build.description", "le_zl1-user 6.0.1 WEXNAOP5802101261S eng.letv.20170126.120318 release-keys");
+           property_set("ro.build.id", "WEXNAOP5802012101S");
+           property_set("ro.product.customize", "oversea");
+           property_set("ro.letv.release.branch", "ZL1_NA_STABLE_020_20161104_20161210_012143_LE_ZL1_OVERSEA.xml");
+           property_set("ro.build.description", "le_zl1-user 6.0.1 WEXNAOP5802012101S eng.letv.20161210.014420 release-keys");
+           property_set("ro.build.fingerprint", "LeEco/ZL1_NA/le_zl1:6.0.1/WEXNAOP5802012101S/letv12100148:user/release-keys");
+
     }
     init_alarm_boot_properties();
 }
