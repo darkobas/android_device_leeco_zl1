@@ -82,7 +82,6 @@ PRODUCT_COPY_FILES += \
 # Ramdisk
 PRODUCT_PACKAGES += \
     fstab.qcom \
-    init.qcom.bt.sh \
     init.qcom.power.rc \
     qfp_boot.sh \
     init.qcom.rc \
@@ -245,10 +244,6 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_PACKAGES += \
     DeviceParts
-
-# bluetooth
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/init.qcom.bt.sh:system/etc/init.qcom.bt.sh
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/FOSSConfig.xml:system/etc/FOSSConfig.xml
