@@ -18,3 +18,7 @@ allow qti_init_shell proc_touchpanel:file { getattr setattr };
 
 allow qti_init_shell coresight_prop:property_service set;
 
+allow qti_init_shell sysfs_power_management:dir search;
+allow qti_init_shell sysfs_power_management:file { rw_file_perms };
+allow qti_init_shell proc_kernel_sched:file { rw_file_perms };
+
