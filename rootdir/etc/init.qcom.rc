@@ -361,7 +361,6 @@ on post-fs-data
     mkdir /persist/bms 0700 root system
     restorecon_recursive /persist
     mkdir /data/misc/dts 0770 media audio
-    mkdir /data/usf 0700 system system
     mkdir /data/misc/tloc/ 0700 system drmrpc
     mkdir /data/misc/qvop 0660 system system
     mkdir /data/misc/audio_pp 0771 media audio
@@ -593,17 +592,6 @@ service per_proxy /system/bin/pm-proxy
     group system
     disabled
     writepid /dev/cpuset/system-background/tasks
-
-service usf_tester /system/bin/usf_tester
-    user system
-    group system inet
-    disabled
-    oneshot
-
-service usf_proximity /system/bin/usf_proximity
-    class late_start
-    user system
-    group system inet audio
 
 on property:init.svc.per_mgr=running
     start per_proxy
