@@ -41,4 +41,13 @@
 	<string name="hbm_mode_title">High brightness mode</string>
     <string name="proxi_summary_head">Check proximity sensor for handling gesture and fingerprint sensor</string>
     <string name="proxi_title_head">Proximity check</string>
+    <string name="kcal_title">Display color</string>
+    <string name="kcal_summary">Display color calibration using KCAL</string>
+    <string name="kcal_enabled_title">Enable KCAL</string>
+    <string name="kcal_enabled_summary">Turn on display calibration using KCAL</string>
+    <string name="kcal_red">Red</string>
+    <string name="kcal_green">Green</string>
+    <string name="kcal_blue">Blue</string>
+    <string name="kcal_saturation">Saturation</string>
+    <string name="kcal_contrast">Constrast</string>
 </resources>

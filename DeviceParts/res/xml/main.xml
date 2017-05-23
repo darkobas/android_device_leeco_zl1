@@ -41,21 +41,13 @@
 			android:title="@string/swap_back_recents_title"
 			android:persistent="false" />
 	</PreferenceCategory>
-<!--
-=======
-	</PreferenceCategory>
 
->>>>>>> bf2e6f2... op3(t): expose swap back and app switch key in device settings
 	<PreferenceCategory
         android:title="@string/graphics_title">
-		<CheckBoxPreference
-			android:key="srgb"
-			android:summary="@string/srgb_mode_summary"
-			android:title="@string/srgb_mode_title" />
-		<CheckBoxPreference
-			android:key="hbm"
-			android:summary="@string/hbm_mode_summary"
-			android:title="@string/hbm_mode_title" />
+		<PreferenceScreen
+			android:key="kcal"
+			android:fragment="org.omnirom.device.DisplayCalibration"
+			android:summary="@string/kcal_summary"
+			android:title="@string/kcal_title" />
 	</PreferenceCategory>
--->
 </PreferenceScreen>

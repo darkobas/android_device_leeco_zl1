@@ -266,9 +266,10 @@
 /dev/block/platform/soc/624000.ufshc/by-name/frp        0600   system     system
 /dev/block/platform/soc/1da4000.ufshc/by-name/frp       0600   system     system
 
-+/dev/hidraw*              0666   system     system
-+/dev/ovr*                 0666   system     system
-+/dev/bus/usb/*            0660   system     usb
-+/dev/graphics/*           0660   system     graphics
-+/dev/goodix_fp            0666   system     system
+/dev/hidraw*              0666   system     system
+/dev/ovr*                 0666   system     system
+/dev/bus/usb/*            0660   system     usb
+/dev/graphics/*           0660   system     graphics
+/dev/goodix_fp            0666   system     system
 
+/sys/devices/platform/kcal_ctrl.0/* 0666 system system

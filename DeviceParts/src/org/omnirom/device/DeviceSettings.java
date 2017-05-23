@@ -22,6 +22,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.preference.ListPreference;
 import android.preference.Preference;
+import android.preference.Preference.OnPreferenceClickListener;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceCategory;
 import android.preference.PreferenceScreen;
@@ -45,6 +46,15 @@ public class DeviceSettings extends PreferenceActivity implements
         getActionBar().setDisplayHomeAsUpEnabled(true);
 
         addPreferencesFromResource(R.xml.main);
+        PreferenceScreen mKcalPref = (PreferenceScreen) findPreference("kcal");
+        mKcalPref.setOnPreferenceClickListener(new OnPreferenceClickListener() {
+             @Override
+             public boolean onPreferenceClick(Preference preference) {
+                 Intent intent = new Intent(getApplicationContext(), DisplayCalibration.class);
+                 startActivity(intent);
+                 return true;
+             }
+        });
 
         mVibratorStrength = (VibratorStrengthPreference) findPreference(KEY_VIBSTRENGTH);
         if (mVibratorStrength != null) {

@@ -27,5 +27,6 @@ public class Startup extends BroadcastReceiver {
     public void onReceive(final Context context, final Intent bootintent) {
         KeyHandler.setButtonDisable(context);
         VibratorStrengthPreference.restore(context);
+        DisplayCalibration.restore(context);
     }
 }

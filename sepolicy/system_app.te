@@ -11,3 +11,5 @@ allow system_app fingerprintd:binder call;
 
 allow system_app media_rw_data_file:dir getattr;
 
+allow system_app kcal_dev:file rw_file_perms;
+allow system_app kcal_dev:dir search;

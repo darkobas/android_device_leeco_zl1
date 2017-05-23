@@ -54,3 +54,8 @@
 
 /sys/remote/enable                     u:object_r:sysfs_ir_enable:s0
 /dev/ttyHSL1                           u:object_r:consumer_ir_device:s0
+
+/sys/devices/platform/kcal_ctrl.0(/.*)?			u:object_r:kcal_dev:s0
+/sys/bus/platform/drivers/kcal_ctrl(/.*)?		u:object_r:kcal_dev:s0
+
+/cache/org\.omnirom\.device\.dex       u:object_r:dalvikcache_data_file:s0
