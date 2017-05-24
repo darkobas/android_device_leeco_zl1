@@ -29,7 +29,6 @@ import init.target.rc
 import init.letv.rc
 import init.letv.usb.rc
 import init.qcom.power.rc
-import init.qcom.usb.rc
 import init.omni.rc
 
 on early-init

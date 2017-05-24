@@ -30,6 +30,8 @@
 chown -h root.system /sys/devices/platform/msm_hsusb/gadget/wakeup
 chmod -h 220 /sys/devices/platform/msm_hsusb/gadget/wakeup
 
+target=`getprop ro.board.platform`
+
 # Set platform variables
 if [ -f /sys/devices/soc0/hw_platform ]; then
     soc_hwplatform=`cat /sys/devices/soc0/hw_platform` 2> /dev/null
@@ -48,7 +50,6 @@ fi
 # Allow persistent usb charging disabling
 # User needs to set usb charging disabled in persist.usb.chgdisabled
 #
-target=`getprop ro.board.platform`
 usbchgdisabled=`getprop persist.usb.chgdisabled`
 case "$usbchgdisabled" in
     "") ;; #Do nothing here
@@ -91,57 +92,28 @@ for f in /sys/bus/esoc/devices/*; do
 done
 fi
 
-target=`getprop ro.board.platform`
-
 #
-# Allow USB enumeration with default PID/VID
+# Set default USB config
 #
-baseband=`getprop ro.baseband`
-echo 1  > /sys/class/android_usb/f_mass_storage/lun/nofua
-usb_config=`getprop persist.sys.usb.config`
-case "$usb_config" in
-    "" | "adb") #USB persist config not set, select default configuration
-      case "$esoc_link" in
-          "PCIe")
-              setprop persist.sys.usb.config diag,diag_mdm,serial_cdev,rmnet_qti_ether,mass_storage,adb
-          ;;
-          *)
-	  case "$soc_hwplatform" in
-	      "Dragon" | "SBC")
-	          setprop persist.sys.usb.config diag,adb
-	      ;;
-              *)
-	      case "$target" in
-                  "msm8916")
-		      setprop persist.sys.usb.config diag,serial_smd,rmnet_bam,adb
-		  ;;
-	          "msm8994" | "msm8992")
-	              setprop persist.sys.usb.config diag,serial_smd,serial_tty,rmnet_ipa,mass_storage,adb
-		  ;;
-	          "msm8996")
-	              setprop persist.sys.usb.config diag,serial_cdev,serial_tty,rmnet_ipa,mass_storage,adb
-		  ;;
-	          "msm8909" | "msm8937")
-		      setprop persist.sys.usb.config diag,serial_smd,rmnet_qti_bam,adb
-		  ;;
-	          "msm8952" | "titanium")
-		      setprop persist.sys.usb.config diag,serial_smd,rmnet_ipa,adb
-		  ;;
-	          *)
-		      setprop persist.sys.usb.config diag,adb
-		  ;;
-              esac
-	      ;;
-	  esac
-	  ;;
-      esac
-      ;;
-  * ) ;; #USB persist config exists, do nothing
+boot_mode=`getprop ro.boot.ftm_mode`
+echo "boot_mode: $boot_mode" > /dev/kmsg
+case "$boot_mode" in
+    "ftm_at" | "ftm_rf" | "ftm_wlan" | "ftm_mos")
+    usb_config=`getprop persist.sys.usb.config`
+    echo "BEFORE boot_mode: $usb_config" > /dev/kmsg
+    if [ "$usb_config" != "diag,adb" ] ; then
+        setprop persist.sys.usb.config diag,adb
+    fi
+    ;;
 esac
+usb_config=`getprop persist.sys.usb.config`
+echo "AFTER boot_mode: $usb_config" > /dev/kmsg
 
 #
 # Do target specific things
 #
+baseband=`getprop ro.baseband`
+
 case "$target" in
     "msm8974")
 # Select USB BAM - 2.0 or 3.0

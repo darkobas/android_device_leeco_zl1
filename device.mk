@@ -86,8 +86,8 @@ PRODUCT_PACKAGES += \
     qfp_boot.sh \
     init.qcom.rc \
     init.letv.rc \
+    init.letv.usb.rc \
     init.qcom.sh \
-    init.qcom.usb.rc \
     init.qcom.usb.sh \
     init.qcom.sensors.sh \
     init.target.rc \
