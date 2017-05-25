@@ -1,6 +1,6 @@
 on boot
     # Bring up CPUs
-    exec - root root system -- /system/bin/init.power.sh
+    #exec - root root system -- /system/bin/init.power.sh
 
     # Update foreground and background cpusets
     write /dev/cpuset/foreground/cpus 0-2

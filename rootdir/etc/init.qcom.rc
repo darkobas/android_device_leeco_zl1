@@ -76,7 +76,7 @@ on early-boot
     write /sys/module/peripheral_loader/parameters/proxy_timeout_ms ${persist.sys.pil_proxy_timeout}
     write /sys/kernel/boot_adsp/boot 1
     write /sys/kernel/boot_slpi/boot 1
-    exec u:r:qti_init_shell:s0 -- /init.qcom.early_boot.sh
+    #exec u:r:qti_init_shell:s0 -- /init.qcom.early_boot.sh
 
 on boot
     # Secure touch
@@ -277,34 +277,34 @@ on boot
     write /proc/sys/net/core/wmem_max  8388608
 
     #To allow interfaces to get v6 address when tethering is enabled
-    write /proc/sys/net/ipv6/conf/rmnet_ipa0/accept_ra 2
-    write /proc/sys/net/ipv6/conf/rmnet_ipa1/accept_ra 2
-    write /proc/sys/net/ipv6/conf/rmnet_ipa2/accept_ra 2
-    write /proc/sys/net/ipv6/conf/rmnet_ipa3/accept_ra 2
-    write /proc/sys/net/ipv6/conf/rmnet_ipa4/accept_ra 2
-    write /proc/sys/net/ipv6/conf/rmnet_ipa5/accept_ra 2
-    write /proc/sys/net/ipv6/conf/rmnet_ipa6/accept_ra 2
-    write /proc/sys/net/ipv6/conf/rmnet_ipa7/accept_ra 2
-    write /proc/sys/net/ipv6/conf/rmnet0/accept_ra 2
-    write /proc/sys/net/ipv6/conf/rmnet1/accept_ra 2
-    write /proc/sys/net/ipv6/conf/rmnet2/accept_ra 2
-    write /proc/sys/net/ipv6/conf/rmnet3/accept_ra 2
-    write /proc/sys/net/ipv6/conf/rmnet4/accept_ra 2
-    write /proc/sys/net/ipv6/conf/rmnet5/accept_ra 2
-    write /proc/sys/net/ipv6/conf/rmnet6/accept_ra 2
-    write /proc/sys/net/ipv6/conf/rmnet7/accept_ra 2
-    write /proc/sys/net/ipv6/conf/rmnet_sdio0/accept_ra 2
-    write /proc/sys/net/ipv6/conf/rmnet_sdio1/accept_ra 2
-    write /proc/sys/net/ipv6/conf/rmnet_sdio2/accept_ra 2
-    write /proc/sys/net/ipv6/conf/rmnet_sdio3/accept_ra 2
-    write /proc/sys/net/ipv6/conf/rmnet_sdio4/accept_ra 2
-    write /proc/sys/net/ipv6/conf/rmnet_sdio5/accept_ra 2
-    write /proc/sys/net/ipv6/conf/rmnet_sdio6/accept_ra 2
-    write /proc/sys/net/ipv6/conf/rmnet_sdio7/accept_ra 2
-    write /proc/sys/net/ipv6/conf/rmnet_usb0/accept_ra 2
-    write /proc/sys/net/ipv6/conf/rmnet_usb1/accept_ra 2
-    write /proc/sys/net/ipv6/conf/rmnet_usb2/accept_ra 2
-    write /proc/sys/net/ipv6/conf/rmnet_usb3/accept_ra 2
+    #write /proc/sys/net/ipv6/conf/rmnet_ipa0/accept_ra 2
+    #write /proc/sys/net/ipv6/conf/rmnet_ipa1/accept_ra 2
+    #write /proc/sys/net/ipv6/conf/rmnet_ipa2/accept_ra 2
+    #write /proc/sys/net/ipv6/conf/rmnet_ipa3/accept_ra 2
+    #write /proc/sys/net/ipv6/conf/rmnet_ipa4/accept_ra 2
+    #write /proc/sys/net/ipv6/conf/rmnet_ipa5/accept_ra 2
+    #write /proc/sys/net/ipv6/conf/rmnet_ipa6/accept_ra 2
+    #write /proc/sys/net/ipv6/conf/rmnet_ipa7/accept_ra 2
+    #write /proc/sys/net/ipv6/conf/rmnet0/accept_ra 2
+    #write /proc/sys/net/ipv6/conf/rmnet1/accept_ra 2
+    #write /proc/sys/net/ipv6/conf/rmnet2/accept_ra 2
+    #write /proc/sys/net/ipv6/conf/rmnet3/accept_ra 2
+    #write /proc/sys/net/ipv6/conf/rmnet4/accept_ra 2
+    #write /proc/sys/net/ipv6/conf/rmnet5/accept_ra 2
+    #write /proc/sys/net/ipv6/conf/rmnet6/accept_ra 2
+    #write /proc/sys/net/ipv6/conf/rmnet7/accept_ra 2
+    #write /proc/sys/net/ipv6/conf/rmnet_sdio0/accept_ra 2
+    #write /proc/sys/net/ipv6/conf/rmnet_sdio1/accept_ra 2
+    #write /proc/sys/net/ipv6/conf/rmnet_sdio2/accept_ra 2
+    #write /proc/sys/net/ipv6/conf/rmnet_sdio3/accept_ra 2
+    #write /proc/sys/net/ipv6/conf/rmnet_sdio4/accept_ra 2
+    #write /proc/sys/net/ipv6/conf/rmnet_sdio5/accept_ra 2
+    #write /proc/sys/net/ipv6/conf/rmnet_sdio6/accept_ra 2
+    #write /proc/sys/net/ipv6/conf/rmnet_sdio7/accept_ra 2
+    #write /proc/sys/net/ipv6/conf/rmnet_usb0/accept_ra 2
+    #write /proc/sys/net/ipv6/conf/rmnet_usb1/accept_ra 2
+    #write /proc/sys/net/ipv6/conf/rmnet_usb2/accept_ra 2
+    #write /proc/sys/net/ipv6/conf/rmnet_usb3/accept_ra 2
 
     write /proc/sys/kernel/kptr_restrict 0
 
