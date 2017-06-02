@@ -12,3 +12,5 @@ allow perfd system_data_file:sock_file { create setattr write unlink };
 allow perfd system_data_file:dir remove_name;
 allow perfd eas_sched:file { rw_file_perms };
 allow perfd eas_sched:dir { r_dir_perms  };
+
+allow perfd mediacodec:process signull;
