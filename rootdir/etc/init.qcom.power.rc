@@ -66,9 +66,9 @@ on enable-low-power
     write /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor "interactive"
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/use_sched_load 1
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/use_migration_notif 1
-    write /sys/devices/system/cpu/cpu2/cpufreq/interactive/above_hispeed_delay "19000 1036800:60000 1248000:60000 1478400:60000 1824000:60000"
+    write /sys/devices/system/cpu/cpu2/cpufreq/interactive/above_hispeed_delay "30000 1036800:60000 1248000:60000 1478400:60000 1824000:60000"
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/go_hispeed_load 90
-    write /sys/devices/system/cpu/cpu2/cpufreq/interactive/timer_rate 20000
+    write /sys/devices/system/cpu/cpu2/cpufreq/interactive/timer_rate 30000
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/hispeed_freq 1036800
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/io_is_busy 1
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/target_loads "85 1500000:90 1800000:95"
@@ -96,7 +96,7 @@ on enable-low-power
     write /proc/sys/kernel/sched_upmigrate 95
     write /proc/sys/kernel/sched_freq_inc_notify 400000
     write /proc/sys/kernel/sched_freq_dec_notify 400000
-    write /proc/sys/kernel/sched_spill_nr_run 3
+    write /proc/sys/kernel/sched_spill_nr_run 6
     write /proc/sys/kernel/sched_init_task_load 100
     write /proc/sys/kernel/sched_upmigrate_min_nice 9
 
