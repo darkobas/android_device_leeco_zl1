@@ -237,7 +237,7 @@ void LocApiBase::reportPosition(UlpLocation &location,
     LOC_LOGV("flags: %d\n  source: %d\n  latitude: %f\n  longitude: %f\n  "
              "altitude: %f\n  speed: %f\n  bearing: %f\n  accuracy: %f\n  "
              "timestamp: %lld\n  rawDataSize: %d\n  rawData: %p\n  "
-             "Session status: %d\n Technology mask: %u\n "
+             "Session status: %d\n Technology mask: %u",
              "SV used in fix (gps/glo/bds/gal) : (%x/%x/%x/%x)",
              location.gpsLocation.flags, location.position_source,
              location.gpsLocation.latitude, location.gpsLocation.longitude,
