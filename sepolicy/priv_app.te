@@ -9,3 +9,11 @@ allow priv_app radio_data_file:dir { r_dir_perms };
 allow priv_app rfs_system_file:dir { r_dir_perms };
 allow priv_app system_app_data_file:dir { r_dir_perms };
 
+allow priv_app bt_firmware_file:dir read;
+allow priv_app cache_private_backup_file:dir getattr;
+allow priv_app configfs:dir read;
+allow priv_app mba_debug_dev:blk_file getattr;
+allow priv_app mnt_media_rw_file:dir getattr;
+allow priv_app persist_file:file getattr;
+allow priv_app rfs_system_file:lnk_file getattr;
+
