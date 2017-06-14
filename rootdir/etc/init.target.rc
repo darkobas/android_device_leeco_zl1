@@ -182,13 +182,13 @@ service ims_rtp_daemon /system/bin/ims_rtp_daemon
    class main
    user system
    socket ims_rtpd stream 0660 system radio
-   group radio net_raw diag inet log
+   group radio diag inet log
    disabled
 
 service imscmservice /system/bin/imscmservice
    class main
    user system
-   group radio net_raw diag diag log
+   group radio diag inet log
    disabled
    writepid /dev/cpuset/system-background/tasks
 
