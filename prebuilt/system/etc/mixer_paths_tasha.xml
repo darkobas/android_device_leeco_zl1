@@ -2029,12 +2029,11 @@
     </path>
 
     <path name="speaker-darkobas">
-        <ctl name="Boost Output Voltage" value="9V" />
-        <ctl name="Left Feedback Enable" value="ON" />
+        <ctl name="Boost Output Voltage" value="10V" />
         <ctl name="Right Feedback Enable" value="ON" />
         <ctl name="Speaker Volume" value="6" />
         <ctl name="Digital Gain" value="66" />
-        <ctl name="Left Channel Enable" value="1" />
+        <ctl name="Left Channel Enable" value="0" />
         <ctl name="Right Channel Enable" value="1" />
     </path>
 
