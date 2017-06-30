@@ -289,10 +289,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     libcommon_time_client
 
-#healthd
-PRODUCT_PACKAGES += \
-    libhealthd.msm8996
-
 #wifi
 PRODUCT_PACKAGES += \
     libwifi-hal-qcom
