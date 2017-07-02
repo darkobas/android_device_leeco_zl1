@@ -75,9 +75,5 @@
         <!-- followed by perf lock options                             -->
         <param key="perf_lock_opts" value="2, 0x101, 0x20F"/>
     </config_params>
-    <pcm_ids>
-      <usecase name="USECASE_AUDIO_RECORD_LOW_LATENCY" type="in" id="19" />
-      <usecase name="USECASE_AUDIO_PLAYBACK_ULL" type="out" id="19" />
-    </pcm_ids>
 </audio_platform_info>
 
